@@ -14,9 +14,6 @@ var runSequence = require('run-sequence');
 var minimist = require('minimist');
 var insert = require('gulp-insert');
 var gulpif = require('gulp-if');
-var babel = require('babelify');
-var source = require('vinyl-source-stream');
-var nodeResolve = require('resolve');
 
 var production = (process.env.NODE_ENV === 'production');
 
@@ -55,36 +52,36 @@ var classReference = require('./content/common/apiMarked');
 gulp.task("default",['menu'])
 
 gulp.task("menu", function() {
-	console.log('...............................................................................')
-	console.log('...............................................................................')
-	console.log('-- KeystoneJS.com Gulp Commands -- gulp menu ----------------------------------')
-	console.log('...............................................................................')
-	console.log('.. clean ... delete build directory                                          ..')
-	console.log('.. deploy ... run build then push to gh-pages branch                         ..')
-	console.log('.. build ... run clean; then pages, css, api, copy                           ..')
-	console.log('.. push ... push build dir to your forks gh-pages branch                     ..')
+	console.log('...............................................................................');
+	console.log('...............................................................................');
+	console.log('-- KeystoneJS.com Gulp Commands -- gulp menu ----------------------------------');
+	console.log('...............................................................................');
+	console.log('.. clean ... delete build directory                                          ..');
+	console.log('.. deploy ... run build then push to gh-pages branch                         ..');
+	console.log('.. build ... run clean; then pages, css, api, copy                           ..');
+	console.log('.. push ... push build dir to your forks gh-pages branch                     ..');
     
-	console.log('.. less ... creates ./public/styles/site.min.css                             ..')
-	console.log('.. css ... run less; bundle prism; save ./build/styles/site.min.css          ..')
-	console.log('.. copy ... copy fonts, images and favicon to build dir                      ..')
-	console.log('.. pages ... create html pages in ./build                                    ..')
-	console.log('.. api ... create the api file in app/html/markedApi.js                      ..')
-    console.log('.. bundle ... create ./build/bundle-inclusive.js                             ..')
-	console.log('-------------------------------------------------------------------------------')
-	console.log('-- DEV OPTIONS ------ To start the dev server type npm start ------------------')
-	console.log('.. dev-push ...   ( required: --repo for push and deploy)                    ..')
-	console.log('.. dev-deploy ... ( optional: --branch, --clone, --tag, --user, --email )    ..')
-	console.log('.. build-no-clean ... does not delete build dir first                        ..')
-	console.log('...............................................................................')
-	console.log('...............................................................................')
+	console.log('.. less ... creates ./public/styles/site.min.css                             ..');
+	console.log('.. css ... run less; bundle prism; save ./build/styles/site.min.css          ..');
+	console.log('.. copy ... copy fonts, images and favicon to build dir                      ..');
+	console.log('.. pages ... create html pages in ./build                                    ..');
+	console.log('.. api ... create the api file in app/html/markedApi.js                      ..');
+	console.log('-------------------------------------------------------------------------------');
+	console.log('-- DEV OPTIONS ----------------------------------------------------------------');
+	console.log('.. dev-push ...   ( required: --repo for push and deploy)                    ..');
+	console.log('.. dev-deploy ... ( optional: --branch, --clone, --tag, --user, --email )    ..');
+	console.log('.. build-no-clean ... does not delete build dir first                        ..');
+	console.log('...............................................................................');
+	console.log('-- DEV SERVER: npm start ------------------------------------------------------');
+	console.log('...............................................................................');
 
 });
 
 function removeBuildDir(cb) {
 	fs.remove('./build', function(err) {
 		if(err) {
-			gutil.log(err)
-			return cb(err)
+			gutil.log(err);
+			return cb(err);
 		}
 		gutil.log('...................');
 		gutil.log('Removed ./build dir');
@@ -95,7 +92,7 @@ function removeBuildDir(cb) {
 
 // delete ./build
 gulp.task("clean", function(cb) {
-	removeBuildDir(cb)
+	removeBuildDir(cb);
 });
 
 
@@ -104,7 +101,7 @@ gulp.task("api", function(cb){
    async.forEachOf(sendMarked, function(v, k, next){
 		async.forEachOf(v, function(vv, kk, tick) {
 			classReference.getApi(vv, k, kk, function(err, marked) {
-				gutil.log('mark',k,kk)
+				gutil.log('mark',k,kk);
 				sendMarked[k][kk] = marked;
 				tick();
 			});
@@ -114,17 +111,17 @@ gulp.task("api", function(cb){
 		
 	}, function(err) {
 		
-		var mark = {}	
+		var mark = {};
 		try {
 			mark = JSON.stringify(sendMarked);
 		} catch(e) {
-			gutil.log(e)
-			cb()
+			gutil.log(e);
+			cb();
 		}
 		var send = "const marked = " + mark + "\n " + "export default marked" + "\n";
 		fs.writeFile('./public/systemjs/app/html/markedApi.js', send, function (err) {
 			gutil.log('wrote /systemjs/app/html/markedApi.js');
-			cb()
+			cb();
 		});
 			
 	});
@@ -134,11 +131,11 @@ gulp.task("api", function(cb){
 gulp.task('less',  function () {
 	var stream = gulp.src('./public/styles/site.less')
 	.pipe(less({
-	  paths: [ './public/styles' ]
+	  paths: [ './public/styles' ];
 	}))
 	.pipe(rename('site.min.css'))
 	.pipe(gulp.dest('./public/styles/'));
-	return stream
+	return stream;
 });
 
 // bundle less and prism css
@@ -147,7 +144,7 @@ gulp.task('css', ['less'], function () {
     .pipe(concatCss("site.min.css"))
     .pipe(minifyCSS())
     .pipe(gulp.dest('./build/styles/'));
-	return stream
+	return stream;
 });
 
 // create each html page from routes
@@ -186,11 +183,11 @@ gulp.task("pages",  function(cb){
 			.pipe(gulpif((route.path != '/404' && route.filename != 'index' && route.path != '/' ),insert.prepend("---\npermalink: " + route.path + "/\n---\n")))
 			.pipe(rename(filepath))
 			.pipe(gulp.dest('./build/'));
-			next()
+			next();
 		}
 		
 	}, function() {
-		cb()
+		cb();
 	});
 });
 
@@ -200,19 +197,19 @@ gulp.task("copy",  function(cb){
 	var stream = gulp.src([ './public/favicon.ico', './public/images/**/*', './public/fonts/**/*', './public/favicon.ico'], {
             base: 'public'
     }).pipe(gulp.dest('./build'));
-    return stream
+    return stream;
 });
 
 // build
 gulp.task('build', function (callback) {
 	
-	runSequence('clean', 'build-no-clean', callback);
-	return
+	return runSequence('clean', 'build-no-clean', callback);
+	
 });
 
 // build without deleting ./build
 gulp.task('build-no-clean', function (cb) {
-	runSequence('pages', 'css', 'copy', cb);
+	return runSequence('pages', 'css', 'copy', cb);
 });
 
 
@@ -233,13 +230,13 @@ gulp.task('push',  function (cb) {
 			message: Args.message
 		},
 		function() {
-			gutil.log('-------------------------------------')
-			gutil.log('published to:')
-			gutil.log('branch: gh-pages')
-			gutil.log('cloned to: ./dev/.gh-pages-production')
-			gutil.log('It may take a few minutes for the server to refresh.')			
-			gutil.log('-------------------------------------')
-			cb()
+			gutil.log('-------------------------------------');
+			gutil.log('published to:');
+			gutil.log('branch: gh-pages');
+			gutil.log('cloned to: ./dev/.gh-pages-production');
+			gutil.log('It may take a few minutes for the server to refresh.');		
+			gutil.log('-------------------------------------');
+			cb();
 		}
 	);
 	
@@ -267,30 +264,28 @@ gulp.task('dev-push', function () {
 				user: Args.user && Args.email ? { user: Args.user, email: Args.email } : null
 			},
 			function() {
-				gutil.log('-------------------------------------')
-				gutil.log('published to:')
-				gutil.log('repo: ' + Args.repo + '')
-				gutil.log('branch:  ' + Args.branch + '')
-				gutil.log('cloned to:  ' + Args.clone + '')
-				gutil.log('It may take a few minutes for the server to refresh.')
-				gutil.log('-------------------------------------')
+				gutil.log('-------------------------------------');
+				gutil.log('published to:');
+				gutil.log('repo: ' + Args.repo + '');
+				gutil.log('branch:  ' + Args.branch + '');
+				gutil.log('cloned to:  ' + Args.clone + '');
+				gutil.log('It may take a few minutes for the server to refresh.');
+				gutil.log('-------------------------------------');
 			}
 		);
 	} else {
-		console.log('------------------------------------------------------------------------------')
-		console.log('------------------------------------------------------------------------------')
+		console.log('------------------------------------------------------------------------------');
+		console.log('------------------------------------------------------------------------------');
 		console.log('-- You must add the --repo option or add your dev repo in gulpfile.js');
-		console.log('------------------------------------------------------------------------------')
-		console.log('------------------------------------------------------------------------------')
+		console.log('------------------------------------------------------------------------------');
+		console.log('------------------------------------------------------------------------------');
 	}
 	return
 });
 
 // build then push to production
 gulp.task('deploy', function (callback) {
-	
-	runSequence('build', 'push', callback);
-	return
+	return runSequence('build', 'push', callback);
 });
 
 // build then push to development
@@ -301,28 +296,11 @@ gulp.task('dev-deploy', function (callback) {
 	if(Args.repo && Args.repo !== '') {
 		runSequence('build', 'dev-push', callback);
 	} else {
-		console.log('------------------------------------------------------------------------------')
-		console.log('------------------------------------------------------------------------------')
+		console.log('------------------------------------------------------------------------------');
+		console.log('------------------------------------------------------------------------------');
 		console.log('-- You must add the --repo option or add your dev repo in gulpfile.js');
-		console.log('------------------------------------------------------------------------------')
-		console.log('------------------------------------------------------------------------------')
+		console.log('------------------------------------------------------------------------------');
+		console.log('------------------------------------------------------------------------------');
 	}
 	return
 });
-
-
-
-
-
-
-function getNPMPackageIds() {
-  // read package.json and get dependencies' package ids
-  var packageManifest = {};
-  try {
-    packageManifest = require('./package.json');
-  } catch (e) {
-    // does not have a package.json manifest
-  }
-  return _.keys(packageManifest.client) || [];
-
-}
