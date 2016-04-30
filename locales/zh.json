@@ -1,0 +1,16 @@
+{
+	"Get Started": "入门",
+	"The fastest way to create a Node.js website. For a deep dive,": "创建Node.js网站最快的方式。要深入其中，",
+	"check out the docs.": "请查阅文档。",
+	"Prerequisites": "前提条件",
+	"Before you begin, make sure you have": "开始之前先确保你已经安装了",
+	"0.10+ installed and ": " 0.10+ 和",
+	"v2.4+ installed and running.": " v2.4+。",
+	"You'll need a reasonable working knowledge of Javascript to use KeystoneJS, as well as familiarity with basics such as database concepts, and using node / npm etc.": "要使用KeystoneJS，你需要掌握合理的Javascript知识，并熟悉数据库概念之类的基础知识，会用 node / npm 等。",
+	"Download and install the Node.js binaries for your platform from the Node.js download page.": "从Node.js下载页面下载并安装用于你的平台的Node.js。",
+	"See the MongoDB installation guide for how to install MongoDB on your operating system.": "查阅MongoDB安装指南了解如何在你的操作系统上安装MongoDB。",
+	"Commands": "命令",
+	"Install the generator": "安装生成器",
+	"npm install -g generator-keystone": "npm install -g generator-keystone",
+	"You'll be using the <a href='https://github.com/keystonejs/generator-keystone', target='_blank'> KeystoneJS generator </a> made with  <a href='http://yeoman.io/', target='_blank'>Yeoman</a>. In your root directory run:": "你将要使用由<a href='http://yeoman.io/', target='_blank'>Yeoman</a>制作的<a href='https://github.com/keystonejs/generator-keystone', target='_blank'>KeystoneJS 生成器</a>。在根目录运行："
+}

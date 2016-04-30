@@ -1,0 +1,21 @@
+{
+	"Get Started": "Get Started",
+	"The fastest way to create a Node.js website. For a deep dive,": "The fastest way to create a Node.js website. For a deep dive,",
+	"check out the docs.": "check out the docs.",
+	"Before you begin, make sure you have": "Before you begin, make sure you have",
+	"0.10+ installed and ": "0.10+ installed and ",
+	"v2.4+ installed and running.": "v2.4+ installed and running.",
+	"You'll need a reasonable working knowledge of Javascript to use KeystoneJS, as well as familiarity with basics such as database concepts, and using node / npm etc.": "You'll need a reasonable working knowledge of Javascript to use KeystoneJS, as well as familiarity with basics such as database concepts, and using node / npm etc.",
+	"Download and install the Node.js binaries for your platform from the Node.js download page.": "Download and install the Node.js binaries for your platform from the Node.js download page.",
+	"See the MongoDB installation guide for how to install MongoDB on your operating system.": "See the MongoDB installation guide for how to install MongoDB on your operating system.",
+	"Commands": "Commands",
+	"Install the generator": "Install the generator",
+	"You'll be using the ": "You'll be using the ",
+	"KeystoneJS generator": "KeystoneJS generator",
+	"made with ": "made with ",
+	"Yeoman": "Yeoman",
+	"In your root directory run:": "In your root directory run:",
+	"npm install -g generator-keystone": "npm install -g generator-keystone",
+	"Prerequisites": "Prerequisites",
+	"You'll be using the <a href='https://github.com/keystonejs/generator-keystone', target='_blank'> KeystoneJS generator </a> made with  <a href='http://yeoman.io/', target='_blank'>Yeoman</a>. In your root directory run:": "You'll be using the <a href='https://github.com/keystonejs/generator-keystone', target='_blank'> KeystoneJS generator </a> made with  <a href='http://yeoman.io/', target='_blank'>Yeoman</a>. In your root directory run:"
+}

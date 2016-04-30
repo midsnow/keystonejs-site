@@ -3,43 +3,42 @@ extends ../../common/templates/layout/base
 block intro
 	.page-header
 		.container
-			h1 Get Started
-			p.lead The fastest way to create a Node.js website. For a deep dive, 
-				a(href='/docs/getting-started') check out the docs.
+			h1 #{__('Get Started')}
+			p.lead #{__('The fastest way to create a Node.js website. For a deep dive,')}   
+				a(href='/docs/getting-started') #{__('check out the docs.')}
 	
 block content
-	//- h2.text-center The fastest way to create a Node.js website
 	.gs-guide
 		.gs-guide-section
 			.container-sm
 				.gs-guide__header
 					h2.gs-guide__title
 						span.gs-guide__title-count 1
-						.gs-guide__title-label Prerequisites
+						.gs-guide__title-label #{__('Prerequisites')}
 					.gs-guide__subtitle
-						p Before you begin, make sure you have <a href="http://nodejs.org/download" target="_blank">Node.js</a> 0.10+ installed and <a href="http://www.mongodb.org/downloads" target="_blank">MongoDB</a> v2.4+ installed and running.
-						p You'll need a reasonable working knowledge of Javascript to use KeystoneJS, as well as familiarity with basics such as database concepts, and using node / npm etc.
+						p #{__('Before you begin, make sure you have')} <a href="http://nodejs.org/download" target="_blank">Node.js</a> #{__('0.10+ installed and ')}<a href="http://www.mongodb.org/downloads" target="_blank">MongoDB</a> #{__('v2.4+ installed and running.')}
+						p #{__("You'll need a reasonable working knowledge of Javascript to use KeystoneJS, as well as familiarity with basics such as database concepts, and using node / npm etc.")}
 		
 		.gs-guide-figure.gs-guide-figure--prerequisites.hidden-xs
 			//- .text Installed?
 			.column.nodejs
 				a(href='http://nodejs.org/download/', target='_blank')
 					.logo: img(src='/images/getting-started/nodejs-logo.png', alt='Node.js logo', width=245, height=66)
-					span.prerequisite Download and install the Node.js binaries for your platform from the Node.js download page.
+					span.prerequisite #{__('Download and install the Node.js binaries for your platform from the Node.js download page.')}
 			.column.mongodb
 				a(href='http://docs.mongodb.org/manual/installation/', target='_blank')
 					.logo: img(src='/images/getting-started/mongodb-logo.png', alt='MongoDB logo', width=294, height=84)
-					span.prerequisite See the MongoDB installation guide for how to install MongoDB on your operating system.
+					span.prerequisite #{__('See the MongoDB installation guide for how to install MongoDB on your operating system.')}
 				
 		.gs-guide-section
 			.container-sm
 				.gs-guide__header
 					h2.gs-guide__title
 						span.gs-guide__title-count 2
-						.gs-guide__title-label Commands
-				h3 Install the generator
-				p You'll be using the <a href='https://github.com/keystonejs/generator-keystone', target='_blank'>KeystoneJS generator</a> made with <a href='http://yeoman.io/', target='_blank'>Yeoman</a>. In your root directory run:
-				pre.command-line npm install -g generator-keystone
+						.gs-guide__title-label #{__('Commands')}
+				h3 #{__('Install the generator')}
+				p #{__("You'll be using the <a href='https://github.com/keystonejs/generator-keystone', target='_blank'> KeystoneJS generator </a> made with  <a href='http://yeoman.io/', target='_blank'>Yeoman</a>. In your root directory run:")}
+				pre.command-line #{__('npm install -g generator-keystone')}
 				
 				h3 Create a folder for your project
 				p Create your project wherever you want:
